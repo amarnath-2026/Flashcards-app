@@ -1,0 +1,220 @@
+:root {
+  --bg-color: #f4f7fb;
+  --text-color: #2c3e50;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --accent-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  --easy: #2ecc71;
+  --hard: #e74c3c;
+  --shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark {
+  --bg-color: #1e272e;
+  --text-color: #ecf0f1;
+  --card-bg: rgba(47, 54, 64, 0.9);
+}
+
+/* HEADER */
+.header {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Theme Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .3s;
+}
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: .3s;
+}
+input:checked + .slider { background: #4caf50; }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* MAIN LAYOUT */
+.main-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  align-items: stretch;
+}
+
+.sidebar, .creator {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Sidebar list */
+#cardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+#cardList li {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#cardList li:hover {
+  background: var(--accent-gradient);
+  color: #fff;
+}
+
+/* Flashcard Area */
+.flashcard-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.flashcard {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 16 / 10;
+  perspective: 1000px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.flashcard .front, .flashcard .back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  backface-visibility: hidden;
+  transition: transform .6s;
+}
+.flashcard .back { transform: rotateY(180deg); }
+.flashcard.flipped .front { transform: rotateY(180deg); }
+.flashcard.flipped .back { transform: rotateY(0); }
+
+/* Buttons */
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.controls, .difficulty-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.nav-btn {
+  background: var(--accent-gradient);
+  color: #fff;
+}
+.easy { background: var(--easy); color: #fff; }
+.hard { background: var(--hard); color: #fff; }
+
+/* Creator */
+.creator input {
+  width: 95%;
+  padding: 10px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.creator button {
+  background: var(--accent-gradient);
+  color: #fff;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* FOOTER */
+.footer {
+  padding: 15px 20px;
+  background: var(--accent-gradient);
+  color: #fff;
+  text-align: center;
+}
+#exportOutput {
+  display: block;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+  .flashcard {
+    max-width: 100%;
+  }
+}

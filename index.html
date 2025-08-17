@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards Pro</title>
+
+  <!-- Google Font + FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <i class="fa-solid fa-layer-group"></i>
+      <h1>Flashcards Pro</h1>
+    </div>
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="themeSwitcher">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2><i class="fa-regular fa-clone"></i> Flashcards</h2>
+      <ul id="cardList"></ul>
+
+      <div class="import-box">
+        <button id="importButton">
+          <i class="fa-solid fa-folder-open"></i> Import JSON
+        </button>
+        <input type="file" id="fileInput" accept=".json" hidden>
+      </div>
+    </aside>
+
+    <!-- FLASHCARD AREA -->
+    <section class="flashcard-area">
+      <div class="flashcard" id="flashcard">
+        <div class="front" id="cardFront">No cards yet!</div>
+        <div class="back" id="cardBack">Add a new flashcard.</div>
+      </div>
+
+      <div class="controls">
+        <button id="prev" class="nav-btn"><i class="fa-solid fa-backward-step"></i> Prev</button>
+        <button id="flip" class="nav-btn"><i class="fa-solid fa-retweet"></i> Flip</button>
+        <button id="next" class="nav-btn">Next <i class="fa-solid fa-forward-step"></i></button>
+        <button id="shuffle" class="nav-btn"><i class="fa-solid fa-shuffle"></i> Shuffle</button>
+      </div>
+
+      <div class="difficulty-controls">
+        <button id="markEasy" class="easy"><i class="fa-solid fa-check"></i> Easy</button>
+        <button id="markHard" class="hard"><i class="fa-solid fa-xmark"></i> Hard</button>
+      </div>
+    </section>
+
+    <!-- CREATOR -->
+    <section class="creator">
+      <h2><i class="fa-solid fa-plus"></i> Add Flashcard</h2>
+      <form id="createForm">
+        <input type="text" id="frontText" placeholder="Enter question / term" required>
+        <input type="text" id="backText" placeholder="Enter answer / definition" required>
+        <button type="button" id="addCard">
+          <i class="fa-solid fa-circle-plus"></i> Add
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <button id="exportJSON"><i class="fa-solid fa-download"></i> Export JSON</button>
+    <pre id="exportOutput"></pre>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
